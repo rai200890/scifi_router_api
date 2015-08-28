@@ -1,16 +1,16 @@
 class Api::ApsController < ApplicationController
-  protect_from_forgery with: :null_session
-  respond_to :json
 
   def index
     @aps = Ap.includes(location:{floor:{building: :campus}})
                .includes(:ap_model)
                .includes(:ap_status)
                .includes(:control_region)
+    render json: @aps
   end
 
   def show
     @ap = Ap.find(params[:id])
+    render json: @ap
   end
 
   def update
