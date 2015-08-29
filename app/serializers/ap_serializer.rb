@@ -10,4 +10,5 @@ class ApSerializer < ActiveModel::Serializer
   belongs_to :control_region
 
   url :ap
+
 end
