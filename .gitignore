@@ -10,8 +10,7 @@
 .idea/*
 /log/*
 /tmp/*
+/coverage/*
 vendor/plugins/*
-bower_components/*
-node_modules/*
 Controle.xlsx
 ssh_command.sh
