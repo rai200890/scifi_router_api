@@ -1,3 +1,7 @@
 language: ruby
 rvm:
   - 2.2.1
+services:
+  - mysql
+before_install:
+  - mysql -e "create database IF NOT EXISTS wifi_uff_location_test;" -u root
