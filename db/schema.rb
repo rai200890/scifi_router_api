@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20150617001519) do
     t.string  "panel_port",        limit: 255
     t.string  "ip",                limit: 255
     t.text    "comments",          limit: 65535
-    t.boolean "validated",         limit: 1
+    t.boolean "validated"
     t.string  "syslocation",       limit: 255
     t.float   "latitude",          limit: 24
     t.float   "longitude",         limit: 24

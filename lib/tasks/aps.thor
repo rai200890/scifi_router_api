@@ -17,10 +17,11 @@ class Aps < Thor
               syslocation: "SYSLOCATION", latitude: "LATITUDE", longitude: "LONGITUDE",
               height: "ALTURA", control_region:"REGIÃO DE CONTROLE SCIFI", ap_model: "MODELO DO AP"}
 
-    rows = sheet.parse(fields)
-    rows.slice!(0)
+      header = sheet.row(1)
 
-    rows.each do |hash|
+     (2..sheet.last_row).each do |i|
+      hash = Hash[[fields.keys, sheet.row(i)].transpose]
+
       attributes = parse_attributes hash
 
       campus = Campus.where(name: attributes[:campus]).first_or_create
