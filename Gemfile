@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rake'
 gem 'rails-api'
 gem 'mysql2'
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 gem 'therubyracer'
 gem 'roo'
 gem 'thor-rails'
@@ -11,12 +11,13 @@ gem 'snmp'
 gem 'responders'
 gem 'thin'
 gem 'railroady'
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sdoc', group: :doc
 gem 'rails_12factor', group: :production
-gem 'rack-cors', '0.3.0'
+gem 'rack-cors'
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
 #gem 'tily.rb'
-gem 'mapstatic'
+#gem 'mapstatic'
+gem 'tileup'
 gem 'fastimage'
 
 group :development, :test do

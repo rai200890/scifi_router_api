@@ -1,6 +1,6 @@
 class SNMPStatus
   include ActiveModel::Model
-
+  include ActiveModel::Serialization
   attr_accessor :syslocation, :channel, :power
 
   def initialize params = {}
