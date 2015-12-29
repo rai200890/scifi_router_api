@@ -3,8 +3,6 @@ source 'https://rubygems.org'
 gem 'rake'
 gem 'rails-api'
 gem 'mysql2'
-gem 'uglifier'
-gem 'therubyracer'
 gem 'roo'
 gem 'thor-rails'
 gem 'snmp'
@@ -15,10 +13,11 @@ gem 'sdoc', group: :doc
 gem 'rails_12factor', group: :production
 gem 'rack-cors'
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
+gem 'rmagick', require: false
 #gem 'tily.rb'
 #gem 'mapstatic'
 gem 'tileup'
-gem 'fastimage'
+#gem 'fastimage'
 
 group :development, :test do
   gem 'awesome_print'
