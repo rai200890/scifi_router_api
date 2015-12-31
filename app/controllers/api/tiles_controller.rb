@@ -3,8 +3,10 @@ class Api::TilesController < ApplicationController
   respond_to :png
 
   def index
-    #path = "#{Rails.root}/public/images/tiles/buildings/25/#{tiles_params[:z]}/#{tiles_params[:x]}/#{tiles_params[:y]}.png"
-    path = "#{Rails.root}/images/planta_ic_4_andar/#{tiles_params[:z]}/#{tiles_params[:x]}/#{tiles_params[:y]}.png"
+    z = tiles_params[:z].to_i
+    x = Math.log(tiles_params[:x].to_i.abs, 256).ceil
+    y = Math.log(tiles_params[:y].to_i.abs, 256).ceil
+    path = "#{Rails.root}/public/images/planta_ic_4_andar/#{z}/map_tile_#{x}_#{y}.png"
     respond_with do |format|
       format.png do
         if File.exists? path
@@ -17,7 +19,7 @@ class Api::TilesController < ApplicationController
   end
 
   def tiles_params
-    params.permit(:x, :y, :z)
+    params.permit(:x, :y, :z, :format)
   end
 
 end
