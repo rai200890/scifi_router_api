@@ -1,5 +1,6 @@
 class Api::ApsController < ApplicationController
 
+respond_to :json
   def index
     @aps = Ap.includes(location:{floor:{building: :campus}})
                .includes(:ap_model)
