@@ -24,8 +24,11 @@ Rails.application.routes.draw do
     end
     resources :tiles, only: :index
     resources :campi do
-      resources :buildings
+      resources :buildings do
+        resources :floors
+      end
     end
+    resources :floors, only: [:index, :show]
   end
 
   #get '*path' => 'application#index'

@@ -6,5 +6,5 @@ class Building < ActiveRecord::Base
   validates :campus, presence: true
 
   delegate :name, to: :campus, prefix: true, allow_nil: true
-
+  delegate :id, to: :campus, prefix: true
 end

@@ -1,11 +1,12 @@
 class Api::ApsController < ApplicationController
 
-respond_to :json
+  respond_to :json
+
+  has_scope :with_details, type: :boolean, default: true
+  has_scope :floor_id
+
   def index
-    @aps = Ap.includes(location:{floor:{building: :campus}})
-               .includes(:ap_model)
-               .includes(:ap_status)
-               .includes(:control_region)
+    @aps = apply_scopes(Ap).all
     render json: @aps
   end
 
