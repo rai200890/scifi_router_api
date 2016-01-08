@@ -1,17 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'dotenv-rails', :groups => [:development, :test]
 gem 'rake'
 gem 'rails-api'
-gem 'mysql2'
 gem 'roo'
 gem 'thor-rails'
 gem 'snmp'
 gem 'responders'
-gem 'thin'
+gem 'puma'
 gem 'railroady'
 gem 'sdoc', group: :doc
-gem 'rails_12factor', group: :production
 gem 'rack-cors'
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
 gem 'rmagick', require: false
@@ -28,6 +25,13 @@ group :development, :test do
   gem 'byebug'
   gem 'spring'
   gem 'rspec-rails'
+  gem 'dotenv-rails'
+  gem 'mysql2'
 end
+
+group :production do
+  gem 'rails_12factor'
+  gem 'pg'
+end	
 
 gem 'simplecov', :require => false, :group => :test

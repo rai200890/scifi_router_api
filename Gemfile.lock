@@ -59,7 +59,6 @@ GEM
       carrierwave (~> 0.9)
       dropbox-sdk (~> 1.6)
     concurrent-ruby (1.0.0)
-    daemons (1.2.3)
     diff-lcs (1.2.5)
     docile (1.1.5)
     dotenv (2.0.2)
@@ -69,7 +68,6 @@ GEM
     dropbox-sdk (1.6.5)
       json
     erubis (2.7.0)
-    eventmachine (1.0.8)
     fastimage (1.8.1)
       addressable (~> 2.3, >= 2.3.5)
     globalid (0.3.6)
@@ -89,6 +87,8 @@ GEM
     mysql2 (0.4.2)
     nokogiri (1.6.7.1)
       mini_portile2 (~> 2.0.0.rc2)
+    pg (0.18.4)
+    puma (2.15.3)
     rack (1.6.4)
     rack-cors (0.4.0)
     rack-test (0.6.3)
@@ -170,10 +170,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    thin (1.6.4)
-      daemons (~> 1.0, >= 1.0.9)
-      eventmachine (~> 1.0, >= 1.0.4)
-      rack (~> 1.0)
     thor (0.19.1)
     thor-rails (0.0.1)
       rails
@@ -195,6 +191,8 @@ DEPENDENCIES
   fastimage
   has_scope
   mysql2
+  pg
+  puma
   rack-cors
   railroady
   rails-api
@@ -208,7 +206,6 @@ DEPENDENCIES
   simplecov
   snmp
   spring
-  thin
   thor-rails
 
 BUNDLED WITH
