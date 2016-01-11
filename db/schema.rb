@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160103194829) do
+ActiveRecord::Schema.define(version: 20160110220036) do
 
   create_table "ap_models", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 20160103194829) do
     t.string  "name",              limit: 255
     t.string  "wan_mac_address",   limit: 255
     t.string  "wlan_mac_address",  limit: 255
-    t.string  "switch_ip",         limit: 255
     t.integer "port",              limit: 4
     t.string  "socket",            limit: 255
     t.string  "panel_port",        limit: 255
@@ -46,6 +45,7 @@ ActiveRecord::Schema.define(version: 20160103194829) do
     t.integer "control_region_id", limit: 4
     t.float   "lat",               limit: 24
     t.float   "lng",               limit: 24
+    t.string  "switch_name",       limit: 255
   end
 
   create_table "buildings", force: :cascade do |t|

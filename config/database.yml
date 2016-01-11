@@ -1,20 +1,20 @@
 development:
   adapter: mysql2
-  encoding: utf-8
+  encoding: utf8
   database: wifi_uff_location_development
   username: root
   password:
-  
+
 test:
   adapter: mysql2
-  encoding: utf-8
+  encoding: utf8
   database: wifi_uff_location_test
   username: root
   password:
 
 production:
   adapter: postgresql
-  encoding: utf-8
+  encoding: utf8
   pool: 5
   database: wifi_uff_location_production
   username: <%= ENV['DATABASE_USERNAME'] %>
