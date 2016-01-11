@@ -1,7 +1,7 @@
 class ApSerializer < ActiveModel::Serializer
   cache key: 'aps', expires_in: 3.hours
 
-  attributes :id, :name, :wan_mac_address, :wlan_mac_address, :switch_ip, :port, :socket, :panel_port, :ip,
+  attributes :id, :name, :wan_mac_address, :wlan_mac_address, :switch_name, :port, :socket, :panel_port, :ip,
              :comments, :validated, :syslocation, :latitude, :longitude, :height, :lat, :lng
 
   belongs_to :location
