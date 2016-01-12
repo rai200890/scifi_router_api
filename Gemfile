@@ -7,7 +7,6 @@ gem 'roo'
 gem 'thor-rails'
 gem 'snmp'
 gem 'responders'
-#gem 'puma'
 gem 'railroady'
 gem 'sdoc', group: :doc
 gem 'rack-cors'
