@@ -1,8 +1,6 @@
 #encoding: utf-8
-require 'roo'
 require 'snmp'
 require 'thor/rails'
-require 'byebug'
 class Snmp < Thor
   include Thor::Rails
 
