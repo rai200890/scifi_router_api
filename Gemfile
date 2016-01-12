@@ -14,6 +14,7 @@ gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
 gem 'rmagick', require: false
 gem 'carrierwave'
 gem 'carrierwave-dropbox'
+gem 'puma'
 #gem 'tily.rb'
 #gem 'mapstatic'
 #gem 'tileup'
