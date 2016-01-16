@@ -4,7 +4,7 @@ class Api::DbImporterController < ApplicationController
 
   def create
     file = params[:file]
-    importer = DbImporter.new(spreadsheet: file.path)
+    importer = DbImporter.new(file.path)
     importer.update
     render json: {status: :ok}.to_json
   end

@@ -1,8 +1,7 @@
 #encoding: utf-8
-require 'roo'
 require 'snmp'
-require 'thor/rails'
 require 'byebug'
+require 'thor/rails'
 class Snmp < Thor
   include Thor::Rails
 
@@ -19,18 +18,15 @@ class Snmp < Thor
   desc "get", "communicates with a network entity using SNMP GET requests"
   #versions: [:SNMPv1, :SNMPv2c]
   def get
+    mibs = ["sysName.0", "sysDescr.0", 'sysLocation.0', 'ifSpeed.0']
     defaults = {host: 'localhost', community: 'public', version: :SNMPv2c, port: 162,
-                mibs: ["sysName.0", "sysDescr.0", 'sysLocation.0', 'ifSpeed.0'],
                 mib_modules: []}
 
-    SNMP::Manager.open(host: options[:host], community: options[:community],
-                       version: options[:version].to_sym, port: options[:port],
-                       mib_modules: options[:mib_modules]) do |manager|
-      response = manager.get(options[:mibs])
-      response = manager.get(['RFC1213-MIB::sysDescr.0'])
-      byebug
-      response.varbind_list do |vb|
-        puts "NAME: #{vb.name.to_s}, VALUE: #{vb.value.to_s}, ASN1_TYPE: #{vb.value.asn1_type}"
+    SNMP::Manager.open(host: 'localhost') do |manager|
+      response = manager.get(mibs)
+      #response = manager.get(['RFC1213-MIB::sysDescr.0'])
+      response.varbind_list.each do |vb|
+        puts "ID:#{vb.name.join(".")} NAME: #{vb.name.to_s}, VALUE: #{vb.value.to_s}, ASN1_TYPE: #{vb.value.asn1_type}"
       end
     end
   end

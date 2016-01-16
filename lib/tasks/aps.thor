@@ -5,8 +5,8 @@ class Aps < Thor
   include Thor::Rails
   desc "update", "update aps from spreadsheet"
   def update(spreadsheet)
-    importer = DBImporter.new spreadsheet: spreadsheet
-    importer.update
+    importer = DbImporter.new spreadsheet
+    puts importer.errors unless importer.update
   end
 
 end
