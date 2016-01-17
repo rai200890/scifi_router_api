@@ -16,11 +16,12 @@ gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
 gem 'rmagick', require: false
 gem 'carrierwave'
 gem 'carrierwave-dropbox'
+gem 'kaminari'
+gem 'has_scope'
 #gem 'tily.rb'
 #gem 'mapstatic'
 #gem 'tileup'
 gem 'fastimage'
-gem 'has_scope'
 
 group :development, :test do
   gem 'awesome_print'

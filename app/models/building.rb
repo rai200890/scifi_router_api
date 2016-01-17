@@ -1,6 +1,6 @@
 class Building < ActiveRecord::Base
   belongs_to :campus
-  has_many :floors
+  has_many :floors, dependent: :destroy
 
   validates :name, presence: true, uniqueness: { scope: :campus_id }
   validates :campus, presence: true

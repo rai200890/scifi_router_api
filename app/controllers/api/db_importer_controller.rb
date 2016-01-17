@@ -1,12 +1,13 @@
 class Api::DbImporterController < ApplicationController
 
-  respond_to :json
-
   def create
     file = params[:file]
     importer = DbImporter.new(file.path)
-    importer.update
-    render json: {status: :ok}.to_json
+    if importer.update
+      render json: {success: "Database updated successfully"}.to_json, status: 200
+    else
+      render json: {errors: importer.errors}.to_json, status: :unprocessable_entity
+    end
   end
 
 end

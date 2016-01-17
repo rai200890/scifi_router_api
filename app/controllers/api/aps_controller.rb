@@ -1,5 +1,6 @@
 class Api::ApsController < ApplicationController
-
+  include PaginationConcern
+  
   respond_to :json
 
   has_scope :with_details, type: :boolean, default: true

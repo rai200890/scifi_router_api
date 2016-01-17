@@ -9,45 +9,54 @@ class DbImporter
               syslocation: "SYSLOCATION", latitude: "LATITUDE", longitude: "LONGITUDE", height: "ALTURA",
           control_region:"REGIÃO DE CONTROLE SCIFI", ap_model: "MODELO DO AP"}
 
-  ASSOCIATIONS = [:campus, :building, :location, :ap_status, :ap_model,:control_region]
+  ASSOCIATIONS = [:campus, :building, :location, :ap_status, :ap_model, :control_region]
 
-  attr_accessor :sheet, :errors
+  attr_accessor :spreadsheet, :errors
 
   def initialize spreadsheet
-    self.sheet = get_sheet spreadsheet
+    self.spreadsheet = spreadsheet
     self.errors = nil
   end
 
   def update
-    self.errors = nil
-    aps_with_errors = 0
-    parse_rows(sheet).each do |attributes|
-      associations_ids = create_or_get_associations_ids attributes
-        unless Ap.where(associations_ids).exists?
-          fields = attributes_without_associations(attributes).merge(associations_ids)
-          ap = Ap.create(fields)
-          aps_with_errors+=1 unless ap.valid?
-        end
+    begin
+      rows = parse_rows(read_sheet)
+      aps_with_errors = create_aps rows
+      delete_old_aps rows
+      self.errors = "#{aps_with_errors} could not be imported" if aps_with_errors > 0
+    rescue TypeError
+      self.errors = "Invalid file"
+    rescue => e
+      self.errors = e.message
     end
-    self.errors = "#{aps_with_errors} could not be imported" if aps_with_errors > 0
     errors.blank?
   end
 
   private
 
-  def create_or_get_associations_ids attributes
-    campus = Campus.where(name: attributes[:campus]).first_or_create
-    building = Building.where(name: attributes[:building], campus_id: campus.id).first_or_create
-    floor = Floor.where(number: get_floor_number(attributes[:location]), building_id: building.id).first_or_create
-    location = Location.where(name: attributes[:location], floor_id: floor.id).first_or_create
+  def create_or_update_ap attributes
+    ap = Ap.where(name: attributes[:name]).first_or_initialize
+    ap.assign_attributes attributes_with_associations(attributes)
+    ap.save
+    ap
+  end
+
+  def create_or_get_associations attributes
+    location = create_or_get_location attributes
     ap_model = ApModel.where(name: attributes[:ap_model]).first_or_create
     ap_status = ApStatus.where(name: attributes[:ap_status]).first_or_create
     control_region = ControlRegion.where(name: attributes[:control_region]).first_or_create
-    { location_id: location.id, ap_model_id: ap_model.id, ap_status_id: ap_status.id,
-      control_region_id: control_region.id }
+    {location: location, ap_model: ap_model, ap_status: ap_status, control_region: control_region}
   end
 
-  def get_sheet spreadsheet
+  def create_or_get_location attributes
+    campus = Campus.where(name: attributes[:campus]).first_or_create
+    building = Building.where(name: attributes[:building], campus_id: campus.id).first_or_create
+    floor = Floor.where(number: get_floor_number(attributes[:location]), building_id: building.id).first_or_create
+    Location.where(name: attributes[:location], floor: floor.id).first_or_create
+  end
+
+  def read_sheet
     xlsx = Roo::Excelx.new(spreadsheet)
     xlsx.sheet(SHEET_NAME)
   end
@@ -59,8 +68,20 @@ class DbImporter
 
   def parse_rows sheet
     (2..sheet.last_row).map do |row_number|
-        Hash[[FIELDS.keys, sheet.row(row_number)].transpose]
+        parse_attributes(Hash[[FIELDS.keys, sheet.row(row_number)].transpose])
      end
+  end
+
+  def create_aps rows
+    rows.inject(0) do |aps_with_errors, attributes|
+      ap = create_or_update_ap attributes
+      aps_with_errors +=1 unless ap.valid?
+      aps_with_errors
+    end
+  end
+
+  def delete_old_aps rows
+    Ap.where.not(name: rows.map{|row| row[:name]}).delete_all
   end
 
   def parse_attributes attributes
@@ -69,14 +90,14 @@ class DbImporter
     attributes
   end
 
-  def attributes_with_association_ids attributes
-    associations_ids = create_or_get_associations_ids attributes
+  def attributes_with_associations attributes
+    associations = create_or_get_associations attributes
     attributes = attributes_without_associations attributes
-    attributes.merge associations_ids
+    attributes.merge associations
   end
 
   def attributes_without_associations attributes
-    remove_associations parse_attributes(attributes)
+    remove_associations attributes
   end
 
   def remove_associations attributes

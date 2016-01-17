@@ -1,7 +1,7 @@
 class Floor < ActiveRecord::Base
   mount_uploader :map, MapUploader
   belongs_to :building
-  has_many :locations
+  has_many :locations, dependent: :destroy
 
   delegate :id, :name, to: :building, prefix: true
   delegate :campus_id, :campus_name, to: :building

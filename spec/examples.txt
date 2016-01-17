@@ -1,0 +1,14 @@
+example_id                                    | status  | run_time        |
+--------------------------------------------- | ------- | --------------- |
+./spec/models/ap_model_spec.rb[1:1]           | pending | 0.00001 seconds |
+./spec/models/ap_spec.rb[1:1]                 | pending | 0.00003 seconds |
+./spec/models/ap_status_spec.rb[1:1]          | pending | 0.00001 seconds |
+./spec/models/building_spec.rb[1:1]           | pending | 0.00001 seconds |
+./spec/models/campus_spec.rb[1:1]             | pending | 0.00001 seconds |
+./spec/models/control_region_spec.rb[1:1]     | pending | 0.00001 seconds |
+./spec/models/floor_spec.rb[1:1]              | pending | 0.00004 seconds |
+./spec/models/location_spec.rb[1:1]           | pending | 0.00001 seconds |
+./spec/models/snmp_status_client_spec.rb[1:1] | pending | 0.00001 seconds |
+./spec/models/snmp_status_item_spec.rb[1:1]   | pending | 0.00001 seconds |
+./spec/models/snmp_status_spec.rb[1:1]        | pending | 0.00001 seconds |
+./spec/models/tile_builder_spec.rb[1:1]       | pending | 0.00012 seconds |
