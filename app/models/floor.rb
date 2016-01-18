@@ -3,9 +3,10 @@ class Floor < ActiveRecord::Base
   belongs_to :building
   has_many :locations, dependent: :destroy
 
-  delegate :id, :name, to: :building, prefix: true
-  delegate :campus_id, :campus_name, to: :building
+  validates :building_id, presence: true
 
+  delegate :id, :name, to: :building, prefix: true, allow_nil: true
+  delegate :campus_id, :campus_name, to: :building
   delegate :file, to: :map, allow_nil: true, prefix: true
   delegate :url, to: :map_file, allow_nil: true, prefix: :map
 

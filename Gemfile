@@ -23,6 +23,11 @@ gem 'has_scope'
 #gem 'tileup'
 gem 'fastimage'
 
+group :test do
+  gem 'shoulda-matchers', '~> 3.0'
+  gem 'factory_girl_rails'
+end	
+
 group :development, :test do
   gem 'awesome_print'
   gem 'byebug'

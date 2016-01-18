@@ -3,8 +3,7 @@ class Building < ActiveRecord::Base
   has_many :floors, dependent: :destroy
 
   validates :name, presence: true, uniqueness: { scope: :campus_id }
-  validates :campus, presence: true
+  validates :campus_id, presence: true
 
-  delegate :name, to: :campus, prefix: true, allow_nil: true
-  delegate :id, to: :campus, prefix: true
+  delegate :id, :name, to: :campus, prefix: true, allow_nil: true
 end

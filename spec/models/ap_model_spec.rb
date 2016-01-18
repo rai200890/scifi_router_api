@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ApModel, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:ap_model){ FactoryGirl.build :ap_model }
+  it { expect(ap_model).to validate_presence_of(:name) }
+  it { expect(ap_model).to validate_uniqueness_of(:name) }
 end

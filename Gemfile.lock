@@ -68,6 +68,11 @@ GEM
     dropbox-sdk (1.6.5)
       json
     erubis (2.7.0)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
     fastimage (1.8.1)
       addressable (~> 2.3, >= 2.3.5)
     globalid (0.3.6)
@@ -158,6 +163,8 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    shoulda-matchers (3.1.0)
+      activesupport (>= 4.0.0)
     simplecov (0.11.1)
       docile (~> 1.1.0)
       json (~> 1.8)
@@ -190,6 +197,7 @@ DEPENDENCIES
   carrierwave
   carrierwave-dropbox
   dotenv-rails
+  factory_girl_rails
   fastimage
   has_scope
   kaminari
@@ -206,6 +214,7 @@ DEPENDENCIES
   roo
   rspec-rails
   sdoc
+  shoulda-matchers (~> 3.0)
   simplecov
   snmp
   spring
