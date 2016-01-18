@@ -4,4 +4,6 @@ rvm:
 services:
   - mysql
 before_install:
-  - mysql -e "create database IF NOT EXISTS wifi_uff_location_test;" -u root
+    - bundle install
+    - bundle exec rake db:create RAILS_ENV=test
+    - bundle exec rake db:migrate RAILS_ENV=test

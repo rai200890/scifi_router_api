@@ -18,15 +18,17 @@ gem 'carrierwave'
 gem 'carrierwave-dropbox'
 gem 'kaminari'
 gem 'has_scope'
+gem 'fastimage'
+
 #gem 'tily.rb'
 #gem 'mapstatic'
 #gem 'tileup'
-gem 'fastimage'
 
 group :test do
   gem 'shoulda-matchers', '~> 3.0'
   gem 'factory_girl_rails'
-end	
+  gem "codeclimate-test-reporter", require: false
+end
 
 group :development, :test do
   gem 'awesome_print'
@@ -40,6 +42,6 @@ end
 group :production do
   gem 'rails_12factor'
   gem 'pg'
-end	
+end
 
 gem 'simplecov', :require => false, :group => :test
