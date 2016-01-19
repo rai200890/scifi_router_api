@@ -28,8 +28,8 @@ Rails.application.routes.draw do
 				resources :floors
 			end
 		end
-		resources :floors, only: [:index, :show]
-		resource :db_importer, only: [:create] 
+		resources :floors
+		resource :db_importer, only: [:create]
 	end
 
 	#get '*path' => 'application#index'
