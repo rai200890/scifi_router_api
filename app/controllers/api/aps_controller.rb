@@ -1,6 +1,6 @@
 class Api::ApsController < ApplicationController
   include PaginationConcern
-  
+
   respond_to :json
 
   has_scope :with_details, type: :boolean, default: true
@@ -8,12 +8,12 @@ class Api::ApsController < ApplicationController
 
   def index
     @aps = apply_scopes(Ap).all
-    render json: @aps
+    respond_with @aps
   end
 
   def show
     @ap = Ap.find(params[:id])
-    render json: @ap
+    respond_with @ap
   end
 
   def update
