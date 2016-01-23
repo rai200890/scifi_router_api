@@ -6,7 +6,8 @@
 [![Build Status](https://travis-ci.org/rai200890/wifi_uff_location_api.svg?branch=master)](https://travis-ci.org/rai200890/wifi_uff_location_api)
 [![Test Coverage](https://codeclimate.com/github/rai200890/wifi_uff_location_api/badges/coverage.svg)](https://codeclimate.com/github/rai200890/wifi_uff_location_api/coverage)
 
-This project aims to help SCIFI-UFF study group locating EDUROAM's routers inside university's buildings. This application makes SNMP requests to these devices to discover in which channel and power they are operating on. Hopefully, this data will be useful for helping configuring routers better, since devices close to one another, operating on the same channel are more susceptible to interference.
+This project aim is to help SCIFI-UFF study group locate EDUROAM's routers inside university's buildings.
+This application makes SNMP requests to these devices to discover in which channel and power they are operating on. Hopefully, this data will be useful to help configure routers better. For instance, devices close to one another,  operating on the same channel are more susceptible to interference.
 
 This is a Rails API to be used by the [interface](https://github.com/rai200890/wifi_uff_location_interface).
 
