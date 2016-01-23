@@ -17,25 +17,25 @@ This is a Rails API to be used by the [interface](https://github.com/rai200890/w
 
 ### External dependencies
 
-``
-sudo apt-get install imagemagick
-``
+```shell
+sudo apt-get install imagemagick libmagickwand-dev
+```
 
 ### Project's dependencies
 
-``
+```shell
 bundle install
-``
+```
 
 ### Creating database
 
-``
+```shell
 rake db:create
 rake db:migrate
-``
+```
 
 ### Loading database seed from spreadsheet
 
-``
+```shell
 thor aps:update <file>
-``
+```
