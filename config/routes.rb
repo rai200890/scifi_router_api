@@ -22,13 +22,12 @@ Rails.application.routes.draw do
 		resource :snmp_status, only: :search do
 			get :search
 		end
+
 		resources :tiles, only: :index
-		resources :campi do
-			resources :buildings do
-				resources :floors
-			end
-		end
+		resources :buildings
 		resources :floors
+		resources :campi
+
 		resource :db_importer, only: [:create]
 	end
 
