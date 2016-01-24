@@ -19,7 +19,7 @@ class Api::SnmpStatusesController < ApplicationController
     channel: {
       name: "SNMPv2-SMI::enterprises.2021.8.1.101.30",
       oid: "1.3.6.1.4.1.2021.8.1.101.30",
-      value: (1..11).to_a.sample
+      value: [1,6,11].sample#(1..11).to_a.sample
     },
     power: {
       name: "SNMPv2-SMI::enterprises.2021.8.1.101.31",

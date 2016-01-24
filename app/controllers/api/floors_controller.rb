@@ -1,14 +1,16 @@
 class Api::FloorsController < ApplicationController
   respond_to :json
 
+  has_scope :campus_id
+
   def index
-    @floors = Floor.all
-    render json: @floors
+    @floors = apply_scopes(Floor).all
+    respond_with @floors
   end
 
   def show
     @floor = Floor.find(params[:id])
-    render json: @floor
+    respond_with @floor
   end
 
   def update
