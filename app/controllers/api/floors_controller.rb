@@ -1,7 +1,7 @@
 class Api::FloorsController < ApplicationController
   respond_to :json
 
-  has_scope :campus_id
+  has_scope :building_id
 
   def index
     @floors = apply_scopes(Floor).all

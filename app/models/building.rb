@@ -7,9 +7,9 @@ class Building < ActiveRecord::Base
 
   delegate :id, :name, to: :campus, prefix: true, allow_nil: true
 
-  scope :building_name, ->(name){
-   building_name = "%#{name}%".upcase
-   where("buildings.name LIKE upper(?)", building_name)
+  scope :building_or_campus_name, ->(name){
+   name = "%#{name}%".upcase
+   eager_load(:campus).where("buildings.name LIKE upper(?) or campi.name LIKE upper(?)", name, name)
   }
 
   scope :campus_id, ->(campus_id){

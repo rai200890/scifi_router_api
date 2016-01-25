@@ -25,5 +25,5 @@ class Floor < ActiveRecord::Base
       [[-height/2.0, -width/2.0],[height/2.0, width/2.0]]
     end
   end
-  
+
 end

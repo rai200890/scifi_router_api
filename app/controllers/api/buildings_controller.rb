@@ -1,7 +1,7 @@
 class Api::BuildingsController < ApplicationController
   respond_to :json
 
-  has_scope :building_name
+  has_scope :building_or_campus_name
   has_scope :campus_id
 
   def index
