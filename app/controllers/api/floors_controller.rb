@@ -5,7 +5,7 @@ class Api::FloorsController < ApplicationController
 
   def index
     @floors = apply_scopes(Floor).all
-    respond_with @floors
+    render json: @floors, each_serializer: SimpleFloorSerializer
   end
 
   def show
