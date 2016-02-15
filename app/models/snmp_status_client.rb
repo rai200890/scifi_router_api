@@ -1,38 +1,18 @@
 class SNMPStatusClient
-  include ActiveModel::Model
+  include HTTParty
+  #base_uri ENV['SNMP_API_URL']
 
-  attr_accessor :host, :community, :port, :version, :mib_modules, :fields, :response
-
-  #SOURCE CODE: https://github.com/hallidave/ruby-snmp/blob/master/lib/snmp/manager.rb
-
-  #UCD-SNMP-MIB::extOutput.30 - CHANNEL - 1.3.6.1.4.1.2021.8.1.101.30
-  #UCD-SNMP-MIB::extOutput.31 - POWER - 1.3.6.1.4.1.2021.8.1.101.31
-
-  def initialize params = {}
-    @host = params[:host] || 'localhost'
-    @community = params[:community] || 'public'
-    @port = params[:port] || 161
-    @version = params[:version].try(:to_sym) || :SNMPv2c
-    @mib_modules = params[:mib_modules] || ["SNMPv2-SMI", "SNMPv2-MIB", "IF-MIB", "IP-MIB", "TCP-MIB", "UDP-MIB"]
-    @fields = params[:fields] || ['sysLocation.0', '1.3.6.1.4.1.2021.8.1.101.30', '1.3.6.1.4.1.2021.8.1.101.31']
+  def initialize
+    @options = { token: ENV['SNMP_API_TOKEN']}
   end
 
-  def self.get params = {}
-    client = self.new params
-    SNMP::Manager.open(client.manager_options) do |manager|
-      begin
-        response = manager.get(client.fields).varbind_list
-        parsed_response = {syslocation: response[0], channel: response[1], power: response[2]}
-        client.response = SNMPStatus.new(parsed_response)
-      rescue Exception => e
-        client.errors.add(:base, e.message)
-      end
-    end
-    client
+  def get params
+    url = ENV['SNMP_API_URL'] + "/snmp/get"
+    self.class.get(url, @options.merge(params))
   end
 
-  def manager_options
-    {host: host, community: community, version: version, port: port, mib_modules: mib_modules}
+  def search
+    url = ENV['SNMP_API_URL'] + "/snmp/search"
+    self.class.get(url, @options.merge(params))
   end
-
 end
