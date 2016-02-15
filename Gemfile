@@ -2,6 +2,7 @@ ruby "2.3.0"
 
 source 'https://rubygems.org'
 
+gem 'dotenv', groups: [:development, :test]
 gem 'rake'
 gem 'rails-api'
 gem 'roo'

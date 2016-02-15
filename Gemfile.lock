@@ -199,6 +199,7 @@ DEPENDENCIES
   carrierwave
   carrierwave-dropbox
   codeclimate-test-reporter
+  dotenv
   dotenv-rails
   factory_girl_rails
   fastimage
