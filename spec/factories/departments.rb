@@ -1,6 +1,6 @@
 FactoryGirl.define do
-  factory :building do
+  factory :department do
     sequence(:name) { |n| "Building #{n}" }
-    campus   
+    campus
   end
 end

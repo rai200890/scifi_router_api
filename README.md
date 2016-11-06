@@ -16,7 +16,7 @@ This is a Rails API to be used by the [interface](https://github.com/rai200890/w
 ### External dependencies
 
 ```shell
-sudo apt-get install imagemagick libmagickwand-dev
+sudo apt-get install imagemagick libmagickwand-dev libpq-dev libmysqlclient-dev
 ```
 
 ### Project's dependencies

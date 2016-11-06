@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160110220036) do
+ActiveRecord::Schema.define(version: 20160607032128) do
 
   create_table "ap_models", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -48,13 +48,6 @@ ActiveRecord::Schema.define(version: 20160110220036) do
     t.string  "switch_name",       limit: 255
   end
 
-  create_table "buildings", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.integer  "campus_id",  limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
   create_table "campi", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
@@ -67,19 +60,19 @@ ActiveRecord::Schema.define(version: 20160110220036) do
     t.datetime "updated_at",             null: false
   end
 
-  create_table "floors", force: :cascade do |t|
-    t.string   "number",      limit: 255
-    t.integer  "building_id", limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.string   "map",         limit: 255
+  create_table "departments", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "campus_id",  limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "map",        limit: 255
   end
 
   create_table "locations", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "floor_id",   limit: 4
+    t.string   "name",          limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "department_id", limit: 4
   end
 
 end

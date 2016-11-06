@@ -19,14 +19,10 @@ Rails.application.routes.draw do
 		resources :aps do
 			resource :snmp_status, only: :show
 		end
-		resource :snmp_status, only: :search do
-			get :search
-		end
 
-		resources :tiles, only: :index
-		resources :buildings
-		resources :floors
-		resources :campi
+		resources :departments, only: [:show, :index, :update]
+		resources :campi, only: [:index]
+		resources :locations, only: [:show, :index]
 
 		resource :db_importer, only: [:create]
 	end

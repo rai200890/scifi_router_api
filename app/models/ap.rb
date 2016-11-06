@@ -7,14 +7,14 @@ class Ap < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
 
   scope :with_details, -> do
-    includes(location:{floor:{building: :campus}})
+    includes(location:{department: :campus})
                .includes(:ap_model)
                .includes(:ap_status)
                .includes(:control_region)
    end
 
-  scope :floor_id, ->(floor_id) do
-    joins(location: {floor: :building}).where(floors: {id: floor_id})
+  scope :department_id, ->(department_id) do
+    joins(location: :department).where(departments: {id: department_id})
   end
 
 end

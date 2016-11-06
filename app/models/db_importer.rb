@@ -4,12 +4,12 @@ class DbImporter
   SHEET_NAME = 'Tabela'
 
   FIELDS = {name: "AP ", wan_mac_address: "MAC / WAN (ETH0)", wlan_mac_address: "WLAN (ETIQUETA)", campus: "CAMPUS",
-          building: "DEPARTAMENTO", location: "LOCAL", switch_name: "SWITCH", port: "PORTA", socket: "TOMADA",
+          department: "DEPARTAMENTO", location: "LOCAL", switch_name: "SWITCH", port: "PORTA", socket: "TOMADA",
           panel_port: "P.PANEL", ap_status: "STATUS", ip: "IP DOS APS", comments: "COMENTARIOS", validated: "VALIDADO",
               syslocation: "SYSLOCATION", latitude: "LATITUDE", longitude: "LONGITUDE", height: "ALTURA",
           control_region:"REGIÃO DE CONTROLE SCIFI", ap_model: "MODELO DO AP"}
 
-  ASSOCIATIONS = [:campus, :building, :location, :ap_status, :ap_model, :control_region]
+  ASSOCIATIONS = [:campus, :department, :location, :ap_status, :ap_model, :control_region]
 
   attr_accessor :spreadsheet, :errors
 
@@ -51,19 +51,13 @@ class DbImporter
 
   def create_or_get_location attributes
     campus = Campus.where(name: attributes[:campus]).first_or_create
-    building = Building.where(name: attributes[:building], campus_id: campus.id).first_or_create
-    floor = Floor.where(number: get_floor_number(attributes[:location]), building_id: building.id).first_or_create
-    Location.where(name: attributes[:location], floor: floor.id).first_or_create
+    department = Department.where(name: attributes[:department], campus_id: campus.id).first_or_create
+    Location.where(name: attributes[:location], department: department).first_or_create
   end
 
   def read_sheet
     xlsx = Roo::Excelx.new(spreadsheet)
     xlsx.sheet(SHEET_NAME)
-  end
-
-  def get_floor_number location
-    floor_number = location.to_s.match(/((\S+) ANDAR)/).to_a.last
-    location and location.include?("TERREO") ? "0" : floor_number
   end
 
   def parse_rows sheet

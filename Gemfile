@@ -3,6 +3,7 @@ ruby "2.3.0"
 source 'https://rubygems.org'
 
 gem 'dotenv', groups: [:development, :test]
+gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'rake'
 gem 'rails-api'
 gem 'roo'
@@ -12,17 +13,14 @@ gem 'puma'
 gem 'railroady'
 gem 'sdoc', group: :doc
 gem 'rack-cors'
-gem 'active_model_serializers'
+gem 'active_model_serializers', '0.10.0.rc3'
 gem 'rmagick', require: false
 gem 'carrierwave'
 gem 'carrierwave-dropbox'
 gem 'kaminari'
 gem 'has_scope'
 gem 'fastimage'
-
-#gem 'tily.rb'
-#gem 'mapstatic'
-#gem 'tileup'
+gem 'httparty'
 
 group :test do
   gem 'shoulda-matchers', '~> 3.0'

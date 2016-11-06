@@ -4,7 +4,7 @@ class Api::ApsController < ApplicationController
   respond_to :json
 
   has_scope :with_details, type: :boolean, default: true
-  has_scope :floor_id
+  has_scope :department_id
 
   def index
     @aps = apply_scopes(Ap).all

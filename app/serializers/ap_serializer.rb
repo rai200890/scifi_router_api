@@ -4,11 +4,9 @@ class ApSerializer < ActiveModel::Serializer
   attributes :id, :name, :wan_mac_address, :wlan_mac_address, :switch_name, :port, :socket, :panel_port, :ip,
              :comments, :validated, :syslocation, :latitude, :longitude, :height, :lat, :lng
 
-  belongs_to :location
-  belongs_to :ap_model
-  belongs_to :ap_status
-  belongs_to :control_region
-
-  #url :ap
+ belongs_to :location
+ belongs_to :ap_model
+ belongs_to :ap_status
+ belongs_to :control_region
 
 end
