@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 Rails.application.routes.draw do
-	#root 'application#index'
+	# root 'application#index'
 	# The priority is based upon order of creation: first created -> highest priority.
 	# See how all your routes lay out with "rake routes".
 
@@ -27,7 +28,7 @@ Rails.application.routes.draw do
 		resource :db_importer, only: [:create]
 	end
 
-	#get '*path' => 'application#index'
+	# get '*path' => 'application#index'
 
 	# Example resource route with options:
 	#   resources :products do

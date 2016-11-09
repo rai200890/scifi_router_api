@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Department < ActiveRecord::Base
   mount_uploader :map, MapUploader
 
@@ -10,30 +11,25 @@ class Department < ActiveRecord::Base
 
   delegate :id, :name, to: :campus, prefix: true, allow_nil: true
 
-  scope :department_or_campus_name, ->(name){
-   name = "%#{name}%".upcase
-   eager_load(:campus).where("departments.name LIKE upper(?) or campi.name LIKE upper(?)", name, name)
-  }
+  scope :department_or_campus_name, ->(name) do
+    name = "%#{name}%".upcase
+    eager_load(:campus).where('departments.name LIKE upper(?) or campi.name LIKE upper(?)', name, name)
+  end
 
-  scope :campus_id, ->(campus_id){
-    where(campus_id: campus_id)
-  }
+  scope :campus_id, ->(campus_id) { where(campus_id: campus_id) }
 
   delegate :file, to: :map, allow_nil: true, prefix: true
 
   def map_url
-    begin
-      map_file.url
-    rescue
-      nil
-    end
+    map_file.url
+  rescue
+    nil
   end
 
   def map_bounds
     if map_url
       width, height = FastImage.size(map_url)
-      [[-height/2.0, -width/2.0],[height/2.0, width/2.0]]
+      [[-height / 2.0, -width / 2.0], [height / 2.0, width / 2.0]]
     end
   end
-
 end

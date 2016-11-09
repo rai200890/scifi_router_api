@@ -1,4 +1,5 @@
 # encoding: UTF-8
+# frozen_string_literal: true
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,70 +12,68 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161107041106) do
+ActiveRecord::Schema.define(version: 20_161_107_041_106) do
+	create_table 'ap_models', force: :cascade do |t|
+		t.string   'name', limit: 255
+		t.datetime 'created_at',             null: false
+		t.datetime 'updated_at',             null: false
+	end
 
-  create_table "ap_models", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
+	create_table 'ap_statuses', force: :cascade do |t|
+		t.string   'name', limit: 255
+		t.datetime 'created_at',             null: false
+		t.datetime 'updated_at',             null: false
+	end
 
-  create_table "ap_statuses", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
+	create_table 'aps', force: :cascade do |t|
+		t.string   'name',              limit: 255
+		t.string   'wan_mac_address',   limit: 255
+		t.string   'wlan_mac_address',  limit: 255
+		t.integer  'port',              limit: 4
+		t.string   'socket',            limit: 255
+		t.string   'panel_port',        limit: 255
+		t.string   'ip',                limit: 255
+		t.text     'comments',          limit: 65_535
+		t.boolean  'validated'
+		t.string   'syslocation',       limit: 255
+		t.float    'latitude',          limit: 24
+		t.float    'longitude',         limit: 24
+		t.float    'height',            limit: 24
+		t.integer  'location_id',       limit: 4
+		t.integer  'ap_model_id',       limit: 4
+		t.integer  'ap_status_id',      limit: 4
+		t.integer  'control_region_id', limit: 4
+		t.float    'lat',               limit: 24
+		t.float    'lng',               limit: 24
+		t.string   'switch_name',       limit: 255
+		t.datetime 'created_at'
+		t.datetime 'updated_at'
+	end
 
-  create_table "aps", force: :cascade do |t|
-    t.string   "name",              limit: 255
-    t.string   "wan_mac_address",   limit: 255
-    t.string   "wlan_mac_address",  limit: 255
-    t.integer  "port",              limit: 4
-    t.string   "socket",            limit: 255
-    t.string   "panel_port",        limit: 255
-    t.string   "ip",                limit: 255
-    t.text     "comments",          limit: 65535
-    t.boolean  "validated"
-    t.string   "syslocation",       limit: 255
-    t.float    "latitude",          limit: 24
-    t.float    "longitude",         limit: 24
-    t.float    "height",            limit: 24
-    t.integer  "location_id",       limit: 4
-    t.integer  "ap_model_id",       limit: 4
-    t.integer  "ap_status_id",      limit: 4
-    t.integer  "control_region_id", limit: 4
-    t.float    "lat",               limit: 24
-    t.float    "lng",               limit: 24
-    t.string   "switch_name",       limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+	create_table 'campi', force: :cascade do |t|
+		t.string   'name', limit: 255
+		t.datetime 'created_at',             null: false
+		t.datetime 'updated_at',             null: false
+	end
 
-  create_table "campi", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
+	create_table 'control_regions', force: :cascade do |t|
+		t.string   'name', limit: 255
+		t.datetime 'created_at',             null: false
+		t.datetime 'updated_at',             null: false
+	end
 
-  create_table "control_regions", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
+	create_table 'departments', force: :cascade do |t|
+		t.string   'name',       limit: 255
+		t.integer  'campus_id',  limit: 4
+		t.datetime 'created_at',             null: false
+		t.datetime 'updated_at',             null: false
+		t.string   'map', limit: 255
+	end
 
-  create_table "departments", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.integer  "campus_id",  limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.string   "map",        limit: 255
-  end
-
-  create_table "locations", force: :cascade do |t|
-    t.string   "name",          limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.integer  "department_id", limit: 4
-  end
-
+	create_table 'locations', force: :cascade do |t|
+		t.string   'name', limit: 255
+		t.datetime 'created_at',                null: false
+		t.datetime 'updated_at',                null: false
+		t.integer  'department_id', limit: 4
+	end
 end

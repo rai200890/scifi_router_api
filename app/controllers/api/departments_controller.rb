@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Api::DepartmentsController < ApplicationController
   respond_to :json
 
@@ -7,7 +8,7 @@ class Api::DepartmentsController < ApplicationController
 
   def index
     @departments = apply_scopes(Department).all
-    respond_with @departments,  each_serializer: DepartmentSerializer
+    respond_with @departments, each_serializer: DepartmentSerializer
   end
 
   def show
@@ -20,11 +21,9 @@ class Api::DepartmentsController < ApplicationController
     begin
       @department.update_attributes(map: params[:file])
     rescue => e
-      render json: {errors: e.message}, status: :unprocessable_entity
+      render json: { errors: e.message }, status: :unprocessable_entity
       return
     end
     respond_with @department
   end
-
-
 end

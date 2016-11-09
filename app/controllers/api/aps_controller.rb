@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Api::ApsController < ApplicationController
   include PaginationConcern
 
@@ -27,5 +28,4 @@ class Api::ApsController < ApplicationController
   def ap_params
     params.require(:ap).permit(:latitude, :longitude)
   end
-
 end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Api::CampiController < ApplicationController
   respond_to :json
 
@@ -7,5 +8,4 @@ class Api::CampiController < ApplicationController
     @campi = apply_scopes(Campus).all
     respond_with @campi
   end
-
 end

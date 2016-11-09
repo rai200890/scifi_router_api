@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Location < ActiveRecord::Base
   belongs_to :department
 
@@ -6,5 +7,4 @@ class Location < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: { scope: :department_id }
   validates :department_id, presence: true
-
 end

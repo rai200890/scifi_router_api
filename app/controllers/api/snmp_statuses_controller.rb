@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Api::SnmpStatusesController < ApplicationController
   respond_to :json
 
@@ -16,5 +17,4 @@ class Api::SnmpStatusesController < ApplicationController
   def snmp_status_params
     params.permit(:host, :community, :port, :version, :mib_modules, :fields)
   end
-
 end
