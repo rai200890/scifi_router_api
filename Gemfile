@@ -6,7 +6,8 @@ source 'https://rubygems.org'
 gem 'dotenv', groups: [:development, :test]
 gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'rake'
-gem 'rails'
+gem 'jwt'
+gem 'rails', '~> 5.0.0.1'
 gem 'roo'
 gem 'thor-rails'
 gem 'responders'
@@ -22,6 +23,7 @@ gem 'kaminari'
 gem 'has_scope'
 gem 'fastimage'
 gem 'httparty'
+gem 'bcrypt', '~> 3.1.7'
 
 group :test do
   gem 'shoulda-matchers', '~> 3.0'

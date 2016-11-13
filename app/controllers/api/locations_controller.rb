@@ -1,14 +1,18 @@
 # frozen_string_literal: true
 class Api::LocationsController < ApplicationController
-  respond_to :json
+  include AuthConcern
 
   def index
     @locations = Location.all
-    respond_with @locations, each_serializer: LocationSerializer
+    render json: @locations, each_serializer: LocationSerializer, status: :ok
   end
 
   def show
-    @location = Location.find(params[:id])
-    respond_with @location
+    @location = Location.where(id: params[:id]).first
+    if @location
+      render json: @location, status: :ok
+    else
+      head :not_found
+    end
   end
 end

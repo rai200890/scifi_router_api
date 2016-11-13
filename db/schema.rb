@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # frozen_string_literal: true
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -12,68 +11,76 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_161_107_041_106) do
-	create_table 'ap_models', force: :cascade do |t|
-		t.string   'name', limit: 255
-		t.datetime 'created_at',             null: false
-		t.datetime 'updated_at',             null: false
-	end
+ActiveRecord::Schema.define(version: 20_161_111_172_242) do
+  create_table 'ap_models', force: :cascade, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
+    t.string   'name'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+  end
 
-	create_table 'ap_statuses', force: :cascade do |t|
-		t.string   'name', limit: 255
-		t.datetime 'created_at',             null: false
-		t.datetime 'updated_at',             null: false
-	end
+  create_table 'ap_statuses', force: :cascade, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
+    t.string   'name'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+  end
 
-	create_table 'aps', force: :cascade do |t|
-		t.string   'name',              limit: 255
-		t.string   'wan_mac_address',   limit: 255
-		t.string   'wlan_mac_address',  limit: 255
-		t.integer  'port',              limit: 4
-		t.string   'socket',            limit: 255
-		t.string   'panel_port',        limit: 255
-		t.string   'ip',                limit: 255
-		t.text     'comments',          limit: 65_535
-		t.boolean  'validated'
-		t.string   'syslocation',       limit: 255
-		t.float    'latitude',          limit: 24
-		t.float    'longitude',         limit: 24
-		t.float    'height',            limit: 24
-		t.integer  'location_id',       limit: 4
-		t.integer  'ap_model_id',       limit: 4
-		t.integer  'ap_status_id',      limit: 4
-		t.integer  'control_region_id', limit: 4
-		t.float    'lat',               limit: 24
-		t.float    'lng',               limit: 24
-		t.string   'switch_name',       limit: 255
-		t.datetime 'created_at'
-		t.datetime 'updated_at'
-	end
+  create_table 'aps', force: :cascade, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
+    t.string   'name'
+    t.string   'wan_mac_address'
+    t.string   'wlan_mac_address'
+    t.integer  'port'
+    t.string   'socket'
+    t.string   'panel_port'
+    t.string   'ip'
+    t.text     'comments', limit: 65_535
+    t.boolean  'validated'
+    t.string   'syslocation'
+    t.float    'real_latitude',     limit: 24
+    t.float    'real_longitude',    limit: 24
+    t.float    'height',            limit: 24
+    t.integer  'location_id'
+    t.integer  'ap_model_id'
+    t.integer  'ap_status_id'
+    t.integer  'control_region_id'
+    t.float    'map_latitude',      limit: 24
+    t.float    'map_longitude',     limit: 24
+    t.string   'switch_name'
+    t.datetime 'created_at'
+    t.datetime 'updated_at'
+  end
 
-	create_table 'campi', force: :cascade do |t|
-		t.string   'name', limit: 255
-		t.datetime 'created_at',             null: false
-		t.datetime 'updated_at',             null: false
-	end
+  create_table 'campi', force: :cascade, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
+    t.string   'name'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+  end
 
-	create_table 'control_regions', force: :cascade do |t|
-		t.string   'name', limit: 255
-		t.datetime 'created_at',             null: false
-		t.datetime 'updated_at',             null: false
-	end
+  create_table 'control_regions', force: :cascade, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
+    t.string   'name'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+  end
 
-	create_table 'departments', force: :cascade do |t|
-		t.string   'name',       limit: 255
-		t.integer  'campus_id',  limit: 4
-		t.datetime 'created_at',             null: false
-		t.datetime 'updated_at',             null: false
-		t.string   'map', limit: 255
-	end
+  create_table 'departments', force: :cascade, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
+    t.string   'name'
+    t.integer  'campus_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string   'map'
+  end
 
-	create_table 'locations', force: :cascade do |t|
-		t.string   'name', limit: 255
-		t.datetime 'created_at',                null: false
-		t.datetime 'updated_at',                null: false
-		t.integer  'department_id', limit: 4
-	end
+  create_table 'locations', force: :cascade, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
+    t.string   'name'
+    t.datetime 'created_at',    null: false
+    t.datetime 'updated_at',    null: false
+    t.integer  'department_id'
+  end
+
+  create_table 'users', force: :cascade, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
+    t.string   'username'
+    t.string   'email'
+    t.string   'password_digest'
+    t.datetime 'created_at',      null: false
+    t.datetime 'updated_at',      null: false
+  end
 end

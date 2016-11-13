@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class Api::DepartmentsController < ApplicationController
-  respond_to :json
+  include AuthConcern
 
   has_scope :department_or_campus_name
   has_scope :department_id
@@ -8,22 +8,24 @@ class Api::DepartmentsController < ApplicationController
 
   def index
     @departments = apply_scopes(Department).all
-    respond_with @departments, each_serializer: DepartmentSerializer
+    render json: @departments, each_serializer: DepartmentSerializer, status: :ok
   end
 
   def show
-    @department = Department.find(params[:id])
-    respond_with @department, serializer: FullDepartmentSerializer
+    @department = Department.where(id: params[:id]).first
+    if @department
+      render json: @department, serializer: FullDepartmentSerializer, status: :ok
+    else
+      head :not_found
+    end
   end
 
   def update
-    @department = Department.find(params[:id])
-    begin
-      @department.update_attributes(map: params[:file])
-    rescue => e
-      render json: { errors: e.message }, status: :unprocessable_entity
-      return
+    @department = Department.where(id: params[:id]).first
+    if @department && @department.update_attributes(map: params[:file])
+      head :no_content
+    else
+      render json: { errors: @department.errors }, status: :unprocessable_entity
     end
-    respond_with @department
   end
 end

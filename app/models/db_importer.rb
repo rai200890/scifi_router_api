@@ -7,7 +7,7 @@ class DbImporter
   FIELDS = { name: 'AP ', wan_mac_address: 'MAC / WAN (ETH0)', wlan_mac_address: 'WLAN (ETIQUETA)', campus: 'CAMPUS',
              department: 'DEPARTAMENTO', location: 'LOCAL', switch_name: 'SWITCH', port: 'PORTA', socket: 'TOMADA',
              panel_port: 'P.PANEL', ap_status: 'STATUS', ip: 'IP DOS APS', comments: 'COMENTARIOS', validated: 'VALIDADO',
-             syslocation: 'SYSLOCATION', latitude: 'LATITUDE', longitude: 'LONGITUDE', height: 'ALTURA',
+             syslocation: 'SYSLOCATION', real_latitude: 'LATITUDE', real_longitude: 'LONGITUDE', height: 'ALTURA',
              control_region: 'REGIÃO DE CONTROLE SCIFI', ap_model: 'MODELO DO AP' }.freeze
 
   ASSOCIATIONS = [:campus, :department, :location, :ap_status, :ap_model, :control_region].freeze

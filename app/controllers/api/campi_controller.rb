@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 class Api::CampiController < ApplicationController
-  respond_to :json
-
+  include AuthConcern
   has_scope :campus_name
 
   def index
     @campi = apply_scopes(Campus).all
-    respond_with @campi
+    render json: @campi, status: :ok
   end
 end
