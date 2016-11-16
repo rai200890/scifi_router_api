@@ -88,6 +88,8 @@ class DbImporter
   def attributes_with_associations(attributes)
     associations = create_or_get_associations attributes
     attributes = attributes_without_associations attributes
+    attributes.delete(:real_latitude)
+    attributes.delete(:real_longitude)
     attributes.merge associations
   end
 

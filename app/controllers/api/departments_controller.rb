@@ -21,11 +21,15 @@ class Api::DepartmentsController < ApplicationController
   end
 
   def update
-    @department = Department.where(id: params[:id]).first
-    if @department && @department.update_attributes(map: params[:file])
+    @department = Department.where(id: department_params[:id]).first
+    if @department && @department.update_attributes((department_params[:department] || {}).merge(department_params.slice(:map)))
       head :no_content
     else
-      render json: { errors: @department.errors }, status: :unprocessable_entity
+      render json: { errors: @department.try(:errors) }, status: :unprocessable_entity
     end
+  end
+
+  def department_params
+    params.permit(:id, :format, :map, department: [:id, aps_attributes: [:id, :map_latitude, :map_longitude]])
   end
 end

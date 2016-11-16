@@ -6,6 +6,8 @@ class Department < ActiveRecord::Base
   has_many :locations
   has_many :aps, through: :locations
 
+  accepts_nested_attributes_for :aps
+
   validates :name, presence: true, uniqueness: { scope: :campus_id }
   validates :campus_id, presence: true
 
