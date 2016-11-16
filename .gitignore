@@ -9,3 +9,6 @@
 vendor/plugins/*
 Controle.xlsx
 ssh_command.sh
+.env
+.env.development
+.env.test
