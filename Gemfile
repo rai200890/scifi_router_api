@@ -23,7 +23,6 @@ gem 'fastimage'
 gem 'httparty'
 gem 'bcrypt', '~> 3.1.7'
 gem 'mysql2'
-gem 'sqlite3'
 gem 'pg'
 
 group :test do
