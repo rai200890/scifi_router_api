@@ -1,9 +1,7 @@
 # frozen_string_literal: true
-ruby '2.3.1'
 
 source 'https://rubygems.org'
 
-gem 'dotenv', groups: [:development, :test]
 gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'rake'
 gem 'jwt'
@@ -24,6 +22,9 @@ gem 'has_scope'
 gem 'fastimage'
 gem 'httparty'
 gem 'bcrypt', '~> 3.1.7'
+gem 'mysql2'
+gem 'sqlite3'
+gem 'pg'
 
 group :test do
   gem 'shoulda-matchers', '~> 3.0'
@@ -37,11 +38,9 @@ group :development, :test do
   gem 'byebug'
   gem 'spring'
   gem 'rspec-rails'
-  gem 'mysql2'
   gem 'rubocop'
 end
 
 group :production do
   gem 'rails_12factor'
-  gem 'pg'
 end

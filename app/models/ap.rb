@@ -17,4 +17,19 @@ class Ap < ActiveRecord::Base
   scope :department_id, ->(department_id) do
     joins(location: :department).where(departments: { id: department_id })
   end
+
+  def snmp_fallback_ap_name
+     number = /ap(.*)/.match(name.downcase.delete(' ')).to_a.second.to_s.rjust(4, "0")
+     "ap#{number}"
+  end
+
+  def snmp_fallback_channel_path
+    "#{snmp_fallback_ap_name}/canal.txt"
+  end
+
+  def snmp_fallback_power_path
+    "#{snmp_fallback_ap_name}/power.txt"
+  end
+
+
 end
