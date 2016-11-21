@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 class Api::SessionsController < ApplicationController
+
   def create
     user = User.where(username: session_params[:username]).first
     if user && user.authenticate(session_params[:password])

@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     resources :campi, only: [:index]
     resources :locations, only: [:show, :index]
     resources :sessions, only: :create
-
+    resources :users, only: [:show, :index]
     resource :db_importer, only: [:create]
   end
 
