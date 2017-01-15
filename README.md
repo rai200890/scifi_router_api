@@ -1,5 +1,5 @@
 
-# wifi_uff_location_api
+# scifi_viz_router_api
 
 [![Code Climate](https://codeclimate.com/github/rai200890/wifi_uff_location_api/badges/gpa.svg)](https://codeclimate.com/github/rai200890/wifi_uff_location_api)
 [![Dependency Status](https://gemnasium.com/rai200890/wifi_uff_location_api.svg)](https://gemnasium.com/rai200890/wifi_uff_location_api)
